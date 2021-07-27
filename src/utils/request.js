@@ -5,7 +5,7 @@ import { getToken } from "@/utils/auth";
 
 const service = axios.create({
     // alterar para env
-    baseURL: 'https://form-mest-service.herokuapp.com/',
+    baseURL: 'http://localhost:8000',
     timeout: 5000
 })
 
@@ -17,7 +17,6 @@ service.interceptors.request.use(
         return config;
     },
     error => {
-        console.log(error);
         return Promise.reject(error);
     }
 );

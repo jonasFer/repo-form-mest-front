@@ -5,7 +5,6 @@ Vue.use(Router);
 
 /* Layout */
 import Layout from '@/layout'
-import cadastroRouter from "@/router/modules/cadastro";
 
 /* Router Modules */
 
@@ -68,18 +67,18 @@ export const constantRoutes = [
                 meta: { title: 'Prontuários', icon: 'el-icon-s-home', noCache: true }
             },
             {
-                path: 'pessoa/info/:id',
-                component: () => import('@/views/prontuario/info/index'),
-                name: 'Info',
-                meta: { title: 'Prontuários', noCache: true },
-                hidden: true
-            },
-            {
-                path: ':id',
-                component: () => import('@/views/prontuario/detalhe/index'),
-                name: 'Detalhe',
-                meta: { title: 'Prontuários', noCache: true },
-                hidden: true
+                path: 'formulario',
+                component: () => import('@/views/prontuario/formulario/index'),
+                hidden: true,
+                children: [
+                    {
+                        path: ':id',
+                        component: () => import('@/views/prontuario/formulario/index'),
+                        name: 'Formulário',
+                        meta: { title: 'Prontuários', noCache: true },
+                        hidden: true
+                    }
+                ]
             }
         ]
     },
@@ -105,7 +104,6 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
     /** when your routing map is too long, you can split it into small modules **/
-    cadastroRouter,
     // 404 page must be placed at the end !!!
     { path: '*', redirect: '/404', hidden: true }
 ]

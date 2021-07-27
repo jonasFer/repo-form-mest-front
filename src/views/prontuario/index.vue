@@ -5,9 +5,11 @@
             <el-button v-waves class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-search" @click="handleFilter">
                 Pesquisar
             </el-button>
-            <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-                Cadastrar
-            </el-button>
+            <router-link to="/prontuario/formulario">
+                <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">
+                    Cadastrar
+                </el-button>
+            </router-link>
         </div>
 
         <el-table
@@ -25,14 +27,14 @@
                     <span>{{ row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="Espécie" align="center">
+            <el-table-column label="Nome" align="center">
                 <template slot-scope="{row}">
                     <span>{{ row.nome }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="Ações" align="center" width="230" class-name="small-padding fixed-width">
                 <template slot-scope="{row}">
-                    <router-link :to="`/prontuario/pessoa/info/${row.id}`">
+                    <router-link :to="`/prontuario/${row.id}`">
                         <el-button type="primary" size="mini">
                             Info
                         </el-button>
@@ -92,7 +94,7 @@ export default {
         getList() {
             this.listQuery.page -= 1;
             this.listLoading = true
-            all('pessoa', this.listQuery).then(response => {
+            all('prontuario', this.listQuery).then(response => {
                 setTimeout(() => {
                     this.listLoading = false
                     this.list = response.data.itens;

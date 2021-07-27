@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store";
 
 const http = axios.create({
-    baseURL: 'https://form-mest-service.herokuapp.com',
+    baseURL: 'http://localhost:8000',
     headers: {
         'Accept': 'application/json',
         'Conten': 'application/json'
