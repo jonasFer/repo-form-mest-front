@@ -5,90 +5,20 @@
                         shape="circle"
                         stepSize="xs"
                         color="#3498db">
+                <tab-content title="Oxigênação">
+                    <oxigenacao :oxigenacao=prontuario.exameFisico.oxigenacao></oxigenacao>
+                </tab-content>
                 <tab-content title="Identificação">
-                    <el-row :gutter="20">
-                        <el-col :span="24">
-                            <el-form-item label="Nome">
-                                <el-input v-model="prontuario.identificacao.nome"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                    <el-row :gutter="20">
-                        <el-col :xs="12" :sm="8" :md="8" :lg="4">
-                            <el-form-item label="Idade">
-                                <el-input v-model="prontuario.identificacao.idade"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="12" :sm="6" :md="6" :lg="4">
-                            <el-form-item label="Sexo">
-                                <el-select v-model="prontuario.identificacao.sexo" placeholder="Selecione o sexo">
-                                <el-option label="Masculino" value="M"></el-option>
-                                <el-option label="Feminino" value="F"></el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="24" :sm="10" :md="10" :lg="8">
-                            <el-form-item label="Data de nascimento">
-                                <el-input v-model="prontuario.identificacao.dataNascimento"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="12" :sm="6" :md="6" :lg="8">
-                            <el-form-item label="Estado civil">
-                                <el-select v-model="prontuario.identificacao.estadoCivil" placeholder="Selecione o sexo">
-                                <el-option label="Solteiro(a)" value="1"></el-option>
-                                <el-option label="Casado(a)" value="2"></el-option>
-                                <el-option label="Divorciado(a)" value="3"></el-option>
-                                <el-option label="Viúvo(a)" value="4"></el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col  :xs="12" :sm="8" :md="8" :lg="4">
-                            <el-form-item label="Profissão">
-                                <el-input v-model="prontuario.identificacao.profissao"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col  :xs="24" :sm="8" :md="8" :lg="4">
-                            <el-form-item label="Naturalidade">
-                                <el-input v-model="prontuario.identificacao.naturalidade"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col  :xs="24" :sm="8" :md="12" :lg="16">
-                            <el-form-item label="Diagnóstico Médico">
-                                <el-input v-model="prontuario.identificacao.diagnosticoMedico"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :xs="12" :sm="8" :md="6" :lg="4">
-                            <el-form-item label="Leito">
-                                <el-input v-model="prontuario.identificacao.leito"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col  :xs="12" :sm="8" :md="6" :lg="4">
-                            <el-form-item label="Data da admissão">
-                                <el-input v-model="prontuario.identificacao.dataAdmissao"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col  :xs="12" :sm="8" :md="8" :lg="4">
-                            <el-form-item label="Horário">
-                                <el-input v-model="prontuario.identificacao.horario"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col  :xs="12" :sm="8" :md="8" :lg="8">
-                            <el-form-item label="Procedencia">
-                                <el-input v-model="prontuario.identificacao.procedencia"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col  :xs="24" :sm="8" :md="8" :lg="4">
-                            <el-form-item label="Registro">
-                                <el-input v-model="prontuario.identificacao.registro"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
+                    <identificacao :identificacao=prontuario.identificacao></identificacao>
                 </tab-content>
-                <tab-content title="Additional Info">
-                My second tab content
+                <tab-content title="Entrevista">
+                    <entrevista :entrevista=prontuario.entrevista></entrevista>
                 </tab-content>
-                <tab-content title="Last step">
-                Yuhuuu! This seems pretty damn simple
+                <tab-content title="Regulação Neurológica">
+                    <regulacao-neurologica :regulacaoNeurologica=prontuario.exameFisico.regulacaoNeurologica></regulacao-neurologica>
+                </tab-content>
+                <tab-content title="Percepção de órgãos dos sentidos">
+                    <percepcao-orgao-sentido :percepcaoOrgaoSentido=prontuario.exameFisico.percepcaoOrgaoSentido></percepcao-orgao-sentido>
                 </tab-content>
             </form-wizard>
         </el-form>
@@ -96,10 +26,23 @@
 </template>
 
 <script>
+import Identificacao from '@/form/identificacao'
+import Entrevista from '@/form/entrevista'
+import RegulacaoNeurologica from '@/form/exame-fisico/regulacao-neurologica'
+import PercepcaoOrgaoSentido from '@/form/exame-fisico/percepcao-orgao-sentido'
+import Oxigenacao from '@/form/exame-fisico/oxigenacao'
+
 export default {
+    components: { 
+        Identificacao,
+        Entrevista,
+        RegulacaoNeurologica,
+        PercepcaoOrgaoSentido,
+        Oxigenacao
+    },
     data() {
-      return {
-          prontuario: {
+        return {
+            prontuario: {
                 id: null,
                 identificacao: {
                     id: null,
@@ -122,21 +65,68 @@ export default {
                     internacaoAnterior: null,
                     internacaoVezes: null,
                     internacaoMotivo: null,
-                    alergias: null,
+                    antecedente: null, // Vai ter que mudar
+                    outroAntecedente: null,
+                    alergia: null,
                     especificacaoAlergia: null,
                     motivoInternacaoAtual: null
                 },
                 exameFisico: {
                     id: null,
-                    escalaComa: null,
-                    observacoes: null
+                    regulacaoNeurologica: {
+                        id: null,
+                        escalaComa: null,
+                        aberturaOcular: null,
+                        respostaMotora: null,
+                        respostaVerbal: null,
+                        observacao: null,
+                        pupila: null,
+                        observacaoPupila: null,
+                        reflexoFotomotor: null,
+                        mobilidadeFisicaMmss: null,
+                        observacaoMobilidadeFisicaMmss: null,
+                        mobilidadeFisicaMmii: null,
+                        observacaoMobilidadeFisicaMmii: null,
+                        medicacaoPsicotropico: null,
+                        observacaoMedicacaoPsicotropico: null,
+                        dosePsicotropico: null,
+                        medicacaoBloqueador: null,
+                        observacaoMedicacaoBloqueador: null,
+                        doseBloqueador: null
+                    },
+                    percepcaoOrgaoSentido: {
+                        id: null,
+                        condicaoVisual: null,
+                        descricaoCondicaoVisual: null,
+                        sensibilidadeDor: null,
+                        intensidadeDor: null,
+                        usoMedicamento: null
+                    },
+                    oxigenacao: {
+                        id: null,
+                        ventilacaoEspontanea: null,
+                        o2Suplementar: null,
+                        descricaoO2Suplementar: null,
+                        protese: null,
+                        auscutaPulmonar: null,
+                        tosse: null,
+                        drenagemToracica: null,
+                        descricaoDrenagemToracica: null,
+                        gasometriaHora: null,
+                        gasometriaPh: null,
+                        gasometriaPaco2: null,
+                        gasometriaPao2: null,
+                        gasometriaHco3: null,
+                        gasometriaBe: null,
+                        gasometriaSo2: null
+                    }
                 }
             }
       }
     },
     methods: {
         onComplete: function(){
-            alert('Yay. Done!');
+            console.log(this.prontuario)
         }
     }
 }
