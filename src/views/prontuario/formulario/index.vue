@@ -4,10 +4,7 @@
             <form-wizard @on-complete="onComplete" 
                         shape="circle"
                         stepSize="xs"
-                        color="#3498db">
-                <tab-content title="Oxigênação">
-                    <oxigenacao :oxigenacao=prontuario.exameFisico.oxigenacao></oxigenacao>
-                </tab-content>
+                        color="#3498db">        
                 <tab-content title="Identificação">
                     <identificacao :identificacao=prontuario.identificacao></identificacao>
                 </tab-content>
@@ -20,6 +17,15 @@
                 <tab-content title="Percepção de órgãos dos sentidos">
                     <percepcao-orgao-sentido :percepcaoOrgaoSentido=prontuario.exameFisico.percepcaoOrgaoSentido></percepcao-orgao-sentido>
                 </tab-content>
+                <tab-content title="Oxigênação">
+                    <oxigenacao :oxigenacao=prontuario.exameFisico.oxigenacao></oxigenacao>
+                </tab-content>
+                <tab-content title="Regulaçãoo Vascular">
+                    <regulacao-vascular :regulacaoVascular=prontuario.exameFisico.regulacaoVascular></regulacao-vascular>
+                </tab-content>
+                <tab-content title="Regulaçãoo Térmica">
+                    <regulacao-termica :regulacaoTermica=prontuario.exameFisico.regulacaoTermica></regulacao-termica>
+                </tab-content>
             </form-wizard>
         </el-form>
     </div>
@@ -31,6 +37,8 @@ import Entrevista from '@/form/entrevista'
 import RegulacaoNeurologica from '@/form/exame-fisico/regulacao-neurologica'
 import PercepcaoOrgaoSentido from '@/form/exame-fisico/percepcao-orgao-sentido'
 import Oxigenacao from '@/form/exame-fisico/oxigenacao'
+import RegulacaoVascular from '@/form/exame-fisico/regulacao-vascular'
+import RegulacaoTermica from '@/form/exame-fisico/regulacao-termica'
 
 export default {
     components: { 
@@ -38,7 +46,9 @@ export default {
         Entrevista,
         RegulacaoNeurologica,
         PercepcaoOrgaoSentido,
-        Oxigenacao
+        Oxigenacao,
+        RegulacaoVascular,
+        RegulacaoTermica
     },
     data() {
         return {
@@ -104,14 +114,33 @@ export default {
                     },
                     oxigenacao: {
                         id: null,
-                        ventilacaoEspontanea: null,
+                        espontanea: null,
                         o2Suplementar: null,
-                        descricaoO2Suplementar: null,
-                        protese: null,
+                        canulaNasal: null,
+                        mascaraSimples: null,
+                        mascaraVenturi: null,
+                        mascaraReservatorio: null,
+                        macronebulizacao: null,
+                        vmi: null,
+                        tot: null,
+                        tqt: null,
+                        tqtDescricao: null,
+                        fio2: null,
+                        spo2: null,
+                        fr: null,
+                        frDescricao: null,
+                        ortopneia: null,
+                        cheyneStokes: null,
+                        kussmaul: null,
+                        expansibilidadeToracica: null,
                         auscutaPulmonar: null,
+                        ruidosAdventicios: null,
                         tosse: null,
                         drenagemToracica: null,
                         descricaoDrenagemToracica: null,
+                        drenagemToracicaD: null,
+                        drenagemToracicaE: null,
+                        drenagemToracicaCaracteristica: null,
                         gasometriaHora: null,
                         gasometriaPh: null,
                         gasometriaPaco2: null,
@@ -119,6 +148,37 @@ export default {
                         gasometriaHco3: null,
                         gasometriaBe: null,
                         gasometriaSo2: null
+                    },
+                    regulacaoVascular: {
+                        id: null,
+                        auscultaCardiaca: null,
+                        arritmia: null,
+                        tipoArritimia: null,
+                        pulso: null,
+                        acessoVenoso: null,
+                        descricaoAcessoVenoso: null,
+                        complicacaoAcesso: null,
+                        drogaVasoativa: null,
+                        descricaoDrogaVasoativa: null,
+                        doseDrogaVasoativa: null,
+                        descricaoDrogaVasoativa2: null,
+                        doseDrogaVasoativa2: null,
+                        ingurgitamento: null,
+                        marcapasso: null,
+                        cateter: null,
+                        outroCateter: null,
+                        dadosFisiologicosFc: null,
+                        dadosFisiologicosPa: null,
+                        dadosFisiologicosPam: null,
+                        dadosFisiologicosPvc: null
+                    },
+                    regulacaoTermica: {
+                        id: null,
+                        normotemico: null,
+                        hipotermico: null,
+                        hipertermico: null,
+                        tremor: null,
+                        temperaturaAxilar: null
                     }
                 }
             }

@@ -64,7 +64,7 @@ export const constantRoutes = [
                 path: '',
                 component: () => import('@/views/prontuario/index'),
                 name: 'Prontuários',
-                meta: { title: 'Prontuários', icon: 'el-icon-s-home', noCache: true }
+                meta: { title: 'Prontuários', icon: 'el-icon-s-order', noCache: true }
             },
             {
                 path: 'formulario',

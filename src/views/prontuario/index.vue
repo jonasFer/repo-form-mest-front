@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <div class="filter-container">
-            <el-input v-model="listQuery.nome" placeholder="Espécie" style="max-width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+            <el-input v-model="listQuery.nome" placeholder="Nome" style="max-width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
             <el-button v-waves class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-search" @click="handleFilter">
                 Pesquisar
             </el-button>
@@ -77,9 +77,6 @@ export default {
             textMap: {
                 update: 'Editar',
                 create: 'Cadastrar'
-            },
-            rules: {
-                nome: [{ required: true, message: 'Nome da espécie é obrigatória', trigger: 'blur' }]
             }
         }
     },

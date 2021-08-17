@@ -123,15 +123,6 @@
                 <el-input v-model="regulacaoNeurologica.doseBloqueador"></el-input>
             </el-form-item>
         </el-col>
-            <!--
-                
-                        medicacaoPsicotropico: null,
-                        observacaoMedicacaoPsicotropico: null,
-                        dosePsicotropico: null,
-                        medicacaoBloqueador: null,
-                        observacaoMedicacaoBloqueador: null,
-                        doseBloqueador: null
-            -->
     </el-row>
 </template>
 

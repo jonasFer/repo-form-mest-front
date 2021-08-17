@@ -16,15 +16,15 @@
         <el-col :xs="12" :sm="7" :md="5" :lg="4">
             <el-form-item label="Antecedentes">
                 <el-select v-model="entrevista.antecedente">
-                <el-option label="HAS" value="1"></el-option>
-                <el-option label="Angina" value="2"></el-option>
-                <el-option label="IAM" value="3"></el-option>
-                <el-option label="DM" value="4"></el-option>
-                <el-option label="Insuficiência renal" value="5"></el-option>
-                <el-option label="Tabagismo" value="6"></el-option>
-                <el-option label="Alcoolismo" value="7"></el-option>
-                <el-option label="Obesidade" value="8"></el-option>
-                <el-option label="Outros" value="9"></el-option>
+                    <el-option label="HAS" value="1"></el-option>
+                    <el-option label="Angina" value="2"></el-option>
+                    <el-option label="IAM" value="3"></el-option>
+                    <el-option label="DM" value="4"></el-option>
+                    <el-option label="Insuficiência renal" value="5"></el-option>
+                    <el-option label="Tabagismo" value="6"></el-option>
+                    <el-option label="Alcoolismo" value="7"></el-option>
+                    <el-option label="Obesidade" value="8"></el-option>
+                    <el-option label="Outros" value="9"></el-option>
                 </el-select>
             </el-form-item>
         </el-col>
