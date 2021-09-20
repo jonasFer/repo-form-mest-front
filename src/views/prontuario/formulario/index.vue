@@ -1,62 +1,75 @@
 <template>
     <div class=app-container>
         <el-form ref="form" :model="prontuario" size="mini" label-position="top">
-            <form-wizard @on-complete="onComplete" 
-                        shape="circle"
-                        stepSize="xs"
-                        color="#3498db">        
-                <tab-content title="Identificação">
+            <el-collapse v-model="activeNames">
+                <el-collapse-item name="1">
+                    <template slot="title">
+                        Identificação <i class="el-icon-warning-outline attention"></i>
+                    </template>
                     <identificacao :identificacao=prontuario.identificacao></identificacao>
-                </tab-content>
-                <tab-content title="Entrevista">
+                </el-collapse-item>
+                <el-collapse-item name="2">
+                    <template slot="title">
+                        Entrevista <i class="el-icon-warning-outline attention"></i>
+                    </template>
                     <entrevista :entrevista=prontuario.entrevista></entrevista>
-                </tab-content>
-                <tab-content title="Regulação Neurológica">
-                    <regulacao-neurologica :regulacaoNeurologica=prontuario.exameFisico.regulacaoNeurologica></regulacao-neurologica>
-                </tab-content>
-                <tab-content title="Percepção de órgãos dos sentidos">
-                    <percepcao-orgao-sentido :percepcaoOrgaoSentido=prontuario.exameFisico.percepcaoOrgaoSentido></percepcao-orgao-sentido>
-                </tab-content>
-                <tab-content title="Oxigênação">
-                    <oxigenacao :oxigenacao=prontuario.exameFisico.oxigenacao></oxigenacao>
-                </tab-content>
-                <tab-content title="Regulação Vascular">
-                    <regulacao-vascular :regulacaoVascular=prontuario.exameFisico.regulacaoVascular></regulacao-vascular>
-                </tab-content>
-                <tab-content title="Regulação Térmica">
-                    <regulacao-termica :regulacaoTermica=prontuario.exameFisico.regulacaoTermica></regulacao-termica>
-                </tab-content>
-                <tab-content title="Hidratação eliminação vesicao">
-                    <hidratacao-eliminacao-vesical :hidratacaoEliminacaoVesical=prontuario.exameFisico.hidratacaoEliminacaoVesical></hidratacao-eliminacao-vesical>
-                </tab-content>
-                <tab-content title="Alimentação e eliminação intestinal">
-                    <alimentacao-eliminacao-intestinal :alimentacaoEliminacaoIntestinal=prontuario.exameFisico.alimentacaoEliminacaoIntestinal></alimentacao-eliminacao-intestinal>
-                </tab-content>
-                <tab-content title="Cuidado corporal">
-                    <cuidado-corporal :cuidadoCorporal=prontuario.exameFisico.cuidadoCorporal></cuidado-corporal>
-                </tab-content>
-                 <tab-content title="Sono e repouso">
-                    <sono-repouso :sonoRepouso=prontuario.exameFisico.sonoRepouso></sono-repouso>
-                </tab-content>
-                 <tab-content title="Atividade fisica">
-                    <atividade-fisica :atividadeFisica=prontuario.exameFisico.atividadeFisica></atividade-fisica>
-                </tab-content>
-                <tab-content title="Sexualidade">
-                    <sexualidade :sexualidade=prontuario.exameFisico.sexualidade></sexualidade>
-                </tab-content>
-                <tab-content title="Comunicação">
-                    <comunicacao :comunicacao=prontuario.exameFisico.comunicacao></comunicacao>
-                </tab-content>
-                <tab-content title="Sexualidade">
-                    <seguranca-emocional :segurancaEmocional=prontuario.exameFisico.segurancaEmocional></seguranca-emocional>
-                </tab-content>
-                <tab-content title="Religiosidade">
-                    <religiosidade :religiosidade=prontuario.exameFisico.religiosidade></religiosidade>
-                </tab-content>
-                <tab-content title="Impressões">
+                </el-collapse-item>
+                <el-collapse-item title="Exame Físico" name="3">
+                    <el-collapse-item title="Regulação neurológica" name="10">
+                        <regulacao-neurologica :regulacaoNeurologica=prontuario.exameFisico.regulacaoNeurologica></regulacao-neurologica>
+                    </el-collapse-item>
+                    <el-collapse-item title="Percepção dos órgãos dos sentidos" name="11">   
+                        <percepcao-orgao-sentido :percepcaoOrgaoSentido=prontuario.exameFisico.percepcaoOrgaoSentido></percepcao-orgao-sentido>
+                    </el-collapse-item>
+                    <el-collapse-item title="Oxigênação" name="12">
+                        <oxigenacao :oxigenacao=prontuario.exameFisico.oxigenacao></oxigenacao>
+                    </el-collapse-item>
+                    <el-collapse-item title="Regulação vascular" name="13">
+                         <regulacao-vascular :regulacaoVascular=prontuario.exameFisico.regulacaoVascular></regulacao-vascular>
+                    </el-collapse-item>
+                    <el-collapse-item title="Regulação térmica" name="14">
+                        <regulacao-termica :regulacaoTermica=prontuario.exameFisico.regulacaoTermica></regulacao-termica>   
+                    </el-collapse-item>
+                    <el-collapse-item title="Hidratação e Eliminação Vesical" name="15">
+                        <hidratacao-eliminacao-vesical :hidratacaoEliminacaoVesical=prontuario.exameFisico.hidratacaoEliminacaoVesical></hidratacao-eliminacao-vesical>
+                    </el-collapse-item>
+                     <el-collapse-item title="Alimentação e eliminação intestinal" name="16">
+                        <alimentacao-eliminacao-intestinal :alimentacaoEliminacaoIntestinal=prontuario.exameFisico.alimentacaoEliminacaoIntestinal></alimentacao-eliminacao-intestinal>
+                    </el-collapse-item>
+                    <el-collapse-item title="Cuidado corporal" name="17">
+                        <cuidado-corporal :cuidadoCorporal=prontuario.exameFisico.cuidadoCorporal></cuidado-corporal>
+                    </el-collapse-item>
+                    <el-collapse-item title="Sono e repouso" name="18">
+                        <sono-repouso :sonoRepouso=prontuario.exameFisico.sonoRepouso></sono-repouso>
+                    </el-collapse-item>
+                    <el-collapse-item title="Atividade fisica" name="19">
+                        <atividade-fisica :atividadeFisica=prontuario.exameFisico.atividadeFisica></atividade-fisica>
+                    </el-collapse-item>
+                    <el-collapse-item title="Sexualidade" name="20">
+                        <sexualidade :sexualidade=prontuario.exameFisico.sexualidade></sexualidade>
+                    </el-collapse-item>
+                    <el-collapse-item title="Comunicação/Educação para a saúde/Aprendizagem" name="21">
+                        <comunicacao :comunicacao=prontuario.exameFisico.comunicacao></comunicacao>
+                    </el-collapse-item>
+                    <el-collapse-item title="Segurança emocional/Amor e aceitação/Gregária" name="22">
+                        <seguranca-emocional :segurancaEmocional=prontuario.exameFisico.segurancaEmocional></seguranca-emocional>
+                    </el-collapse-item>
+                    <el-collapse-item title="Religiosidade" name="23">
+                        <religiosidade :religiosidade=prontuario.exameFisico.religiosidade></religiosidade>
+                    </el-collapse-item>
+                </el-collapse-item>
+                <el-collapse-item title="Impressões do enfermeiro e intercorrências" name="4">
                     <impressoes-intecorrencia :impressoesIntercorrencia=prontuario.exameFisico.impressoesIntercorrencia></impressoes-intecorrencia>
-                </tab-content>
-            </form-wizard>
+                </el-collapse-item>
+                <el-collapse-item title="Diagnósticos de enfermagem" name="5">
+                    
+                </el-collapse-item>
+                <el-collapse-item title="Intervenções de enfermagem" name="6">
+                    <el-collapse-item title="Procedimentos realizados" name="7">
+                    
+                    </el-collapse-item>
+                </el-collapse-item>
+            </el-collapse>
         </el-form>
     </div>
 </template>
@@ -100,9 +113,10 @@ export default {
         Religiosidade,
         ImpressoesIntecorrencia
     },
-    data() { 
-        return {
-            prontuario: {
+    data() {
+      return {
+        activeNames: null,
+        prontuario: {
                 id: null,
                 identificacao: {
                     id: null,
@@ -316,16 +330,14 @@ export default {
                     }
                 }
             }
-      }
-    },
-    methods: {
-        onComplete: function(){
-            console.log(this.prontuario)
-        }
+      };
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+.attention {
+    font-size: 40px;
+    color: orange;
+}
 </style>
