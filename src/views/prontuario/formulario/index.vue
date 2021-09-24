@@ -4,17 +4,20 @@
             <el-collapse v-model="activeNames">
                 <el-collapse-item name="1">
                     <template slot="title">
-                        Identificação <i class="el-icon-warning-outline attention"></i>
+                        I - Identificação <i class="el-icon-warning-outline attention"></i>
                     </template>
                     <identificacao :identificacao=prontuario.identificacao></identificacao>
                 </el-collapse-item>
                 <el-collapse-item name="2">
                     <template slot="title">
-                        Entrevista <i class="el-icon-warning-outline attention"></i>
+                       II - Entrevista <i class="el-icon-warning-outline attention"></i>
                     </template>
                     <entrevista :entrevista=prontuario.entrevista></entrevista>
                 </el-collapse-item>
-                <el-collapse-item title="Exame Físico" name="3">
+                <el-collapse-item name="3">
+                    <template slot="title">
+                       III - Exame Físico <i class="el-icon-warning-outline attention"></i>
+                    </template>
                     <el-collapse-item title="Regulação neurológica" name="10">
                         <regulacao-neurologica :regulacaoNeurologica=prontuario.exameFisico.regulacaoNeurologica></regulacao-neurologica>
                     </el-collapse-item>
@@ -139,7 +142,15 @@ export default {
                     internacaoAnterior: null,
                     internacaoVezes: null,
                     internacaoMotivo: null,
-                    antecedente: null, // Vai ter que mudar
+                    has: null,
+                    angina: null,
+                    iam: null,
+                    dm: null,
+                    insuficienciaRenal: null,
+                    tabagismo: null,
+                    alcoolismo: null,
+                    obesidade: null,
+                    outro: null,
                     outroAntecedente: null,
                     alergia: null,
                     especificacaoAlergia: null,
@@ -154,19 +165,41 @@ export default {
                         respostaMotora: null,
                         respostaVerbal: null,
                         observacao: null,
-                        pupila: null,
+                        isocorica: null,
+                        anisocorica: null,
+                        midriase: null,
                         observacaoPupila: null,
                         reflexoFotomotor: null,
-                        mobilidadeFisicaMmss: null,
-                        observacaoMobilidadeFisicaMmss: null,
-                        mobilidadeFisicaMmii: null,
-                        observacaoMobilidadeFisicaMmii: null,
-                        medicacaoPsicotropico: null,
-                        observacaoMedicacaoPsicotropico: null,
-                        dosePsicotropico: null,
-                        medicacaoBloqueador: null,
-                        observacaoMedicacaoBloqueador: null,
-                        doseBloqueador: null
+                        mmssPreservada: null,
+                        mmssParesia: null,
+                        mmssObservacaoParesia: null,
+                        mmssPlegia: null,
+                        mmssObservacaoPlegia: null,
+                        mmssParestesia: null,
+                        mmssObservacaoParestesia: null,
+                        mmiiPreservada: null,
+                        mmiiParesia: null,
+                        mmiiObservacaoParesia: null,
+                        mmiiPlegia: null,
+                        mmiiObservacaoPlegia: null,
+                        mmiiParestesia: null,
+                        mmiiObservacaoParestesia: null,
+                        movimentoLento: null,
+                        movimentoInvoluntario: null,
+                        forcaMotora: null,
+                        observacaoForcaMotora: null,
+                        cefaleia: null,
+                        criseConvulsiva: null,
+                        fotofobia: null,
+                        rigidezNuca: null,
+                        kernig: null,
+                        brudzinski: null,
+                        psicotropico: null,
+                        observacaoPsicotropico: null,
+                        psicotropicoDose: null,
+                        bloqueador: null,
+                        observacaoBloqueador: null,
+                        bloqueadorDose: null
                     },
                     percepcaoOrgaoSentido: {
                         id: null,

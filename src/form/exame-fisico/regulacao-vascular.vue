@@ -1,6 +1,6 @@
 <template>
     <el-row :gutter="20">
-        <el-col :xs="12" :sm="7" :md="5" :lg="5">
+        <el-col :xs="12" :sm="8" :md="6" :lg="4">
             <el-form-item label="Ausculta Cardíaca">
                 <el-select v-model="regulacaoVascular.auscultaCardiaca">
                     <el-option label="Sons cardíacos normais" value="1"></el-option>
@@ -8,7 +8,7 @@
                 </el-select>
             </el-form-item>
         </el-col>
-        <el-col :xs="12" :sm="7" :md="5" :lg="5">
+        <el-col :xs="12" :sm="8" :md="6" :lg="4">
             <el-form-item label="Arritimias">
                 <el-select v-model="regulacaoVascular.arritmia">
                     <el-option label="Sim" value="true"></el-option>
@@ -21,7 +21,7 @@
                 <el-input v-model="regulacaoVascular.tipoArritimia"></el-input>
             </el-form-item>
         </el-col>
-        <el-col :xs="12" :sm="7" :md="5" :lg="5">
+        <el-col :xs="12" :sm="8" :md="6" :lg="4">
             <el-form-item label="Pulso">
                 <el-select v-model="regulacaoVascular.pulso">
                     <el-option label="Regular" value="1"></el-option>
@@ -32,7 +32,7 @@
                 </el-select>
             </el-form-item>
         </el-col>
-        <el-col :xs="12" :sm="7" :md="5" :lg="5">
+        <el-col :xs="12" :sm="8" :md="6" :lg="4">
             <el-form-item label="Perfusão periférica">
                 <el-select v-model="regulacaoVascular.perfusao">
                     <el-option label="Preservada" value="1"></el-option>
@@ -40,7 +40,7 @@
                 </el-select>
             </el-form-item>
         </el-col>
-        <el-col :xs="12" :sm="7" :md="5" :lg="5">
+        <el-col :xs="12" :sm="8" :md="6" :lg="4">
             <el-form-item label="Acesso venoso">
                 <el-select v-model="regulacaoVascular.acessoVenoso">
                     <el-option label="Central" value="1"></el-option>
@@ -89,7 +89,7 @@
                 <el-checkbox v-model="regulacaoVascular.ingurgitamento">Ingurgitamento jugular</el-checkbox>
             </el-form-item>
         </el-col>
-        <el-col :xs="12" :sm="7" :md="5" :lg="5">
+        <el-col :xs="12" :sm="8" :md="6" :lg="4">
             <el-form-item label="Marcapasso">
                 <el-select v-model="regulacaoVascular.marcapasso">
                     <el-option label="Sim" value="true"></el-option>
@@ -97,7 +97,7 @@
                 </el-select>
             </el-form-item>
         </el-col>
-        <el-col :xs="12" :sm="7" :md="5" :lg="5">
+        <el-col :xs="12" :sm="8" :md="6" :lg="4">
             <el-form-item label="Cateter Swan Ganz">
                 <el-select v-model="regulacaoVascular.cateter">
                     <el-option label="Sim" value="1"></el-option>
