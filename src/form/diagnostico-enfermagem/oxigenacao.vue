@@ -3,55 +3,54 @@
         <el-row :gutter="20">
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="sexualidade.alteracaoMama">Mamas</el-checkbox>
+                    <el-checkbox v-model="oxigenacao.dispneia">Dispineia</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="sexualidade.alteracaoVulva">Vulvas</el-checkbox>
+                    <el-checkbox v-model="oxigenacao.padraoRespiratorioPrejudicado">Padrão respiratório prejudicado</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="sexualidade.alteracaoPenis">Pênis</el-checkbox>
+                    <el-checkbox v-model="oxigenacao.trocaGasesPrejudicada">Troca de gases prejudicada</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="sexualidade.alteracaoBolsaEscrotal">Bolsa Escrotal</el-checkbox>
-                </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="7" :md="5" :lg="5">
-                <el-form-item label="Tipo">
-                    <el-input v-model="sexualidade.tipoAlteracao"></el-input>
-                </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="7" :md="5" :lg="5">
-                <el-form-item label="Deambulação">
-                    <el-select v-model="sexualidade.dst">
-                        <el-option label="Sim" value="1"></el-option>
-                        <el-option label="Não" value="0"></el-option>
-                    </el-select>
-                </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="7" :md="5" :lg="5">
-                <el-form-item label="Descriçao DST">
-                    <el-input v-model="sexualidade.descricaoDst"></el-input>
+                    <el-checkbox v-model="oxigenacao.ventilacaoPrejudicada">Ventilação espontânea prejudicada</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="sexualidade.preservativo">Usa preservativo</el-checkbox>
+                    <el-checkbox v-model="oxigenacao.ventilacaoMecanica">Ventilação mecânica</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="sexualidade.anticoncepcionais">Usa outros métodos anticoncepcionais</el-checkbox>
+                    <el-checkbox v-model="oxigenacao.tosseProdutiva">Tosse Produtiva</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
-                <el-form-item label="Descrição">
-                    <el-input v-model="sexualidade.descricao"></el-input>
+                <el-form-item>
+                    <el-checkbox v-model="oxigenacao.tosseSeca">Tosse seca</el-checkbox>
+                </el-form-item>
+            </el-col>
+            <el-col :xs="12" :sm="7" :md="5" :lg="5">
+                <el-form-item>
+                    <el-checkbox v-model="oxigenacao.expectoracaoInsuficiente">Expectoração insuficiente</el-checkbox>
+                </el-form-item>
+            </el-col>
+            <el-col :xs="12" :sm="7" :md="5" :lg="5">
+                <el-form-item>
+                    <el-checkbox v-model="oxigenacao.limpezaViaAereaPrejudicada">Limpeza de vias aéreas prejudicada</el-checkbox>
+                </el-form-item>
+            </el-col>
+        </el-row>
+        <el-row :gutter="20">
+            <el-col :xs="12" :sm="10" :md="6" :lg="8">
+                <el-form-item label="Outro">
+                    <el-input v-model="oxigenacao.outro"></el-input>
                 </el-form-item>
             </el-col>
         </el-row>
@@ -61,13 +60,13 @@
 <script>
 export default {
     props: {
-        sexualidade: {
+        oxigenacao: {
             type: Object
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
