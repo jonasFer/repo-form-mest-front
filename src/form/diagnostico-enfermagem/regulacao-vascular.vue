@@ -79,7 +79,7 @@
         </el-row>
         <el-row :gutter="20">
             <el-col :xs="12" :sm="10" :md="6" :lg="8">
-                <el-form-item label="Outro">
+                <el-form-item label="Outros">
                     <el-input v-model="regulacaoVascular.outro"></el-input>
                 </el-form-item>
             </el-col>

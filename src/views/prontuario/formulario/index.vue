@@ -1,6 +1,6 @@
 <template>
     <div class=app-container>
-        <el-form ref="form" :model="prontuario" size="mini" label-position="top">
+        <el-form ref="dataForm" :model="prontuario" size="mini" label-position="top">
             <el-collapse v-model="activeNames">
                 <el-collapse-item name="1">
                     <template slot="title">
@@ -61,10 +61,16 @@
                         <religiosidade :religiosidade=prontuario.exameFisico.religiosidade></religiosidade>
                     </el-collapse-item>
                 </el-collapse-item>
-                <el-collapse-item title="Impressões do enfermeiro e intercorrências" name="4">
+                <el-collapse-item name="4">
+                    <template slot="title">
+                        IV - Impressões do enfermeiro e intercorrências <i class="el-icon-warning-outline attention"></i>
+                    </template>
                     <impressoes-intecorrencia :impressoesIntercorrencia=prontuario.exameFisico.impressoesIntercorrencia></impressoes-intecorrencia>
                 </el-collapse-item>
-                <el-collapse-item title="Diagnósticos de enfermagem" name="5">
+                <el-collapse-item name="5">
+                    <template slot="title">
+                        V - Diagnósticos de enfermagem <i class="el-icon-warning-outline attention"></i>
+                    </template>
                     <el-collapse-item title="Necessidade de oxigênação" name="30">
                         <necessidade-oxigenacao :oxigenacao=prontuario.diagnosticoEnfermagem.oxigenacao></necessidade-oxigenacao>
                     </el-collapse-item>
@@ -78,35 +84,44 @@
                         <necessidade-nutricao :nutricao=prontuario.diagnosticoEnfermagem.nutricao></necessidade-nutricao>
                     </el-collapse-item>
                     <el-collapse-item title="Necessidade de eliminação" name="34">
-                        <necessidade-eliminacao :regulacaoNeurologica=prontuario.diagnosticoEnfermagem.eliminacao></necessidade-eliminacao>
+                        <necessidade-eliminacao :eliminacao=prontuario.diagnosticoEnfermagem.eliminacao></necessidade-eliminacao>
                     </el-collapse-item>
                     <el-collapse-item title="Necessidade de integridade Fisica" name="35">
                         <necessidade-integridade-fisica :integridadeFisica=prontuario.diagnosticoEnfermagem.integridadeFisica></necessidade-integridade-fisica>
                     </el-collapse-item>
-                    <el-collapse-item title="Necessidade de percepção dos orgãos dos sentidos - Dolorasa" name="36">
+                    <el-collapse-item title="Necessidade de percepção dos orgãos dos sentidos - Dolorosa" name="36">
                         <necessidade-orgao-sentido :percepcaoOrgaoSentido=prontuario.diagnosticoEnfermagem.percepcaoOrgaoSentido></necessidade-orgao-sentido>
                     </el-collapse-item>
                     <el-collapse-item title="Necessidade de regulação térmica" name="37">
                         <necessidade-termica :termica=prontuario.diagnosticoEnfermagem.termica></necessidade-termica>
                     </el-collapse-item>
                     <el-collapse-item title="Necessidade de sono e repouso / Cuidado corporal" name="38">
-                        <necessidade-sono-repouso :terapeutica=prontuario.diagnosticoEnfermagem.terapeutica></necessidade-sono-repouso>
+                        <necessidade-sono-repouso :sonoRepouso=prontuario.diagnosticoEnfermagem.sonoRepouso></necessidade-sono-repouso>
                     </el-collapse-item>
                     <el-collapse-item title="Necessidade de terapeutica" name="39">
                         <necessidade-terapeutica :terapeutica=prontuario.diagnosticoEnfermagem.terapeutica></necessidade-terapeutica>
                     </el-collapse-item>
                     <el-collapse-item title="Necessidade segurança Emocional/Espiritual" name="40">
-                        <necessidade-seguranca-emocional :terapeutica=prontuario.diagnosticoEnfermagem.terapeutica></necessidade-seguranca-emocional>
+                        <necessidade-seguranca-emocional :segurancaEmocional=prontuario.diagnosticoEnfermagem.terapeutica></necessidade-seguranca-emocional>
                     </el-collapse-item>
                     <el-collapse-item title="Dados do enfermeiro" name="41">
-                        <dados-enfermeiro :terapeutica=prontuario.diagnosticoEnfermagem.dadosEnfermeiro></dados-enfermeiro>
+                        <dados-enfermeiro :dadosEnfermeiro=prontuario.diagnosticoEnfermagem.dadosEnfermeiro></dados-enfermeiro>
                     </el-collapse-item>
                 </el-collapse-item>
-                <el-collapse-item title="Intervenções de enfermagem" name="6">
+                <el-collapse-item name="6">
+                    <template slot="title">
+                        VI - Intervenções de enfermagem <i class="el-icon-warning-outline attention"></i>
+                    </template>
                     <el-collapse-item title="Procedimentos realizados" name="7">
                     </el-collapse-item>
                 </el-collapse-item>
             </el-collapse>
+            <el-button>
+                Cancelar
+            </el-button>
+            <el-button type="primary" @click="submitForm()">
+                Salvar
+            </el-button>
         </el-form>
     </div>
 </template>
@@ -141,6 +156,7 @@ import NecessidadeSonoRepouso from '@/form/diagnostico-enfermagem/sono-repouso'
 import NecessidadeTerapeutica from '@/form/diagnostico-enfermagem/terapeutica'
 import NecessidadeSegurancaEmocional from '@/form/diagnostico-enfermagem/seguranca-emocional'
 import DadosEnfermeiro from '@/form/diagnostico-enfermagem/dados-enfermeiro'
+import { create } from "@/api/base"
 
 export default {
     components: {
@@ -198,8 +214,9 @@ export default {
                 entrevista: {
                     id: null,
                     internacaoAnterior: null,
-                    internacaoVezes: null,
                     internacaoMotivo: null,
+                    alergia: null,
+                    especificacaoAlergia: null,
                     has: null,
                     angina: null,
                     iam: null,
@@ -208,10 +225,7 @@ export default {
                     tabagismo: null,
                     alcoolismo: null,
                     obesidade: null,
-                    outro: null,
                     outroAntecedente: null,
-                    alergia: null,
-                    especificacaoAlergia: null,
                     motivoInternacaoAtual: null
                 },
                 exameFisico: {
@@ -283,7 +297,6 @@ export default {
                         fio2: null,
                         spo2: null,
                         fr: null,
-                        frDescricao: null,
                         ortopneia: null,
                         cheyneStokes: null,
                         kussmaul: null,
@@ -600,7 +613,24 @@ export default {
                     }
                 }
             }
-        };
+        }
+    },
+    methods: {
+        submitForm() {
+            this.$refs['dataForm'].validate((valid) => {
+                if (valid) {
+                    console.log(this.prontuario)
+                    create('prontuario', this.prontuario).then(response => {
+                        this.$notify({
+                            title: 'Successo',
+                            message: 'Cadastrado com sucesso',
+                            type: 'success',
+                            duration: 2000
+                        })
+                    })
+                }
+            })
+        }
     }
 }
 </script>
@@ -609,5 +639,10 @@ export default {
 .attention {
     font-size: 40px;
     color: orange;
+}
+
+.success {
+    font-size: 40px;
+    color: green;
 }
 </style>

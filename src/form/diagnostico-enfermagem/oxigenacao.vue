@@ -48,8 +48,8 @@
             </el-col>
         </el-row>
         <el-row :gutter="20">
-            <el-col :xs="12" :sm="10" :md="6" :lg="8">
-                <el-form-item label="Outro">
+            <el-col :xs="24" :sm="24" :md="24" :lg="24">
+                <el-form-item label="Outros">
                     <el-input v-model="oxigenacao.outro"></el-input>
                 </el-form-item>
             </el-col>

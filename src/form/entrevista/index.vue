@@ -71,12 +71,7 @@
                     <el-checkbox v-model="entrevista.obesidade">Obesidade</el-checkbox>
                 </el-form-item>
             </el-col>
-            <el-col :xs="12" :sm="6" :md="5" :lg="3">
-                <el-form-item>
-                    <el-checkbox v-model="entrevista.outro">Outros</el-checkbox>
-                </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="8" :md="8" :lg="12" v-if="entrevista.outro == true">
+            <el-col :xs="12" :sm="8" :md="8" :lg="12">
                 <el-form-item label="Outros antecedentes">
                     <el-input v-model="entrevista.outroAntecedente"></el-input>
                 </el-form-item>
