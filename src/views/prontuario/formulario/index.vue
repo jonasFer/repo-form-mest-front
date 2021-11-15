@@ -116,12 +116,17 @@
                     </el-collapse-item>
                 </el-collapse-item>
             </el-collapse>
-            <el-button>
-                Cancelar
-            </el-button>
-            <el-button type="primary" @click="submitForm()">
-                Salvar
-            </el-button>
+            <el-row style="float: right;"> 
+                <br><br>
+                <router-link :to="{ name: 'Prontuários' }">
+                    <el-button>
+                        Voltar
+                    </el-button>
+                </router-link>
+                <el-button type="primary" @click="submitForm()">
+                    Salvar
+                </el-button>
+            </el-row>
         </el-form>
     </div>
 </template>
@@ -617,19 +622,38 @@ export default {
     },
     methods: {
         submitForm() {
-            this.$refs['dataForm'].validate((valid) => {
-                if (valid) {
-                    create('prontuario', this.prontuario).then(response => {
-                        this.$notify({
-                            title: 'Successo',
-                            message: 'Cadastrado com sucesso',
-                            type: 'success',
-                            duration: 2000
-                        })
+            this.$confirm('Deseja salvar o formulário?', '', {
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não',
+                type: 'warning'
+            }).then(() => {
+                this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        create('prontuario', this.prontuario)
+                            .then(response => {
+                                this.$notify({
+                                    title: 'Successo',
+                                    message: 'Cadastrado com sucesso',
+                                    type: 'success',
+                                    duration: 2000
+                                })
 
-                        this.$router.push({ name: 'Prontuários' })
-                    })
-                }
+                                this.$router.push({ name: 'Prontuários' })
+                            })
+                            .catch(() => {
+                                this.$notify({
+                                    title: 'Falha',
+                                    message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
+                                    type: 'error',
+                                    duration: 5000
+                                })       
+                            });
+                    } else {
+                        this.$alert('Existem campos obrigatórios não preenchidos', {
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
             })
         }
     }

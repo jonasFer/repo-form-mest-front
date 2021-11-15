@@ -2,7 +2,7 @@
     <el-card>
         <el-row :gutter="20">
             <el-col :span="24">
-                <el-form-item label="Nome" required="true">
+                <el-form-item label="Nome">
                     <el-input v-model="identificacao.nome"></el-input>
                 </el-form-item>
             </el-col>

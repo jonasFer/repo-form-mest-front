@@ -7,23 +7,25 @@
             </template>
             <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
                 <div class="avatar-wrapper">
-                    <img :src="avatar" class="user-avatar">
-                    <i class="el-icon-caret-bottom" />
+                <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+                <i class="el-icon-caret-bottom" />
                 </div>
                 <el-dropdown-menu slot="dropdown">
-                    <router-link to="/">
-                        <el-dropdown-item>Dashboard</el-dropdown-item>
-                    </router-link>
+                    <el-dropdown-item divided @click.native="logout()">
+                        <span style="display:block;">Log Out</span>
+                    </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
+        
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import Breadcrumb from '@/components/Breadcrumb';
-import Hamburger from '@/components/Hamburger';
+import Breadcrumb from '@/components/Breadcrumb'
+import Hamburger from '@/components/Hamburger'
+import store from '@/store'
 
 
 export default {
@@ -42,6 +44,10 @@ export default {
         toggleSideBar() {
             this.$store.dispatch('app/toggleSideBar')
         },
+        logout() {
+            store.dispatch('user/logout')
+            this.$router.push("login")
+        }
     }
 }
 </script>

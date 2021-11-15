@@ -80,8 +80,9 @@ export default {
             }
         }
     },
-    created() {
+    activated() {
         this.getList()
+        console.log('activated')
     },
     methods: {
         paginate() {
