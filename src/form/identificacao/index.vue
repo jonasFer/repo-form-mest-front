@@ -2,13 +2,13 @@
     <el-card>
         <el-row :gutter="20">
             <el-col :span="24">
-                <el-form-item label="Nome">
+                <el-form-item label="Nome" required="true">
                     <el-input v-model="identificacao.nome"></el-input>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="8" :md="8" :lg="4">
                 <el-form-item label="Idade">
-                    <el-input v-model="identificacao.idade"></el-input>
+                    <el-input v-model="identificacao.idade" type="number"></el-input>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="6" :md="6" :lg="4">
@@ -21,7 +21,7 @@
             </el-col>
             <el-col :xs="24" :sm="10" :md="10" :lg="8">
                 <el-form-item label="Data de nascimento">
-                    <el-date-picker type="date" v-model="identificacao.dataNascimento" style="width: 100%;"></el-date-picker>
+                    <el-date-picker type="date" v-model="identificacao.dataNascimento" style="width: 100%;" format="dd/MM/yyyy"></el-date-picker>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="6" :md="6" :lg="8">
@@ -56,12 +56,12 @@
             </el-col>
             <el-col  :xs="12" :sm="8" :md="6" :lg="4">
                 <el-form-item label="Data da admissão">
-                    <el-date-picker type="date" v-model="identificacao.dataAdmissao" style="width: 100%;"></el-date-picker>
+                    <el-date-picker type="date" v-model="identificacao.dataAdmissao" style="width: 100%;" format="dd/MM/yyyy"></el-date-picker>
                 </el-form-item>
             </el-col>
             <el-col  :xs="12" :sm="8" :md="8" :lg="4">
                 <el-form-item label="Horário">
-                    <el-time-picker v-model="identificacao.horario" style="width: 100%;"></el-time-picker>
+                    <el-time-picker v-model="identificacao.horario" style="width: 100%;" format="HH:mm:dd"></el-time-picker>
                 </el-form-item>
             </el-col>
             <el-col  :xs="12" :sm="8" :md="8" :lg="8">

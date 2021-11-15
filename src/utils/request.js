@@ -5,8 +5,8 @@ import { getToken } from "@/utils/auth";
 
 const service = axios.create({
     // alterar para env
-    baseURL: 'http://localhost:8000',
-    timeout: 5000
+    baseURL: 'http://form-mest-service.us-east-2.elasticbeanstalk.com',
+    timeout: 10000
 })
 
 service.interceptors.request.use(

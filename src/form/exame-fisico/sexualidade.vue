@@ -27,7 +27,7 @@
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
-                <el-form-item label="Deambulação">
+                <el-form-item label="DST">
                     <el-select v-model="sexualidade.dst">
                         <el-option label="Sim" value="1"></el-option>
                         <el-option label="Não" value="0"></el-option>
@@ -46,7 +46,7 @@
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="sexualidade.anticoncepcionais">Usa outros métodos anticoncepcionais</el-checkbox>
+                    <el-checkbox v-model="sexualidade.anticoncepcional">Usa outros métodos anticoncepcionais</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">

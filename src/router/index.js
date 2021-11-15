@@ -52,7 +52,7 @@ export const constantRoutes = [
                 path: 'index',
                 component: () => import('@/views/dashboard/index'),
                 name: 'Dashboard',
-                meta: { title: 'Dashboard', icon: 'el-icon-s-home', noCache: true }
+                meta: { title: 'Dashboard', icon: 'el-icon-s-home' }
             }
         ]
     },
@@ -64,7 +64,7 @@ export const constantRoutes = [
                 path: '',
                 component: () => import('@/views/prontuario/index'),
                 name: 'Prontuários',
-                meta: { title: 'Prontuários', icon: 'el-icon-s-order', noCache: true }
+                meta: { title: 'Prontuários', icon: 'el-icon-s-order'}
             },
             {
                 path: 'formulario',
@@ -75,7 +75,7 @@ export const constantRoutes = [
                         path: ':id',
                         component: () => import('@/views/prontuario/formulario/index'),
                         name: 'Formulário',
-                        meta: { title: 'Prontuários', noCache: true },
+                        meta: { title: 'Prontuários' },
                         hidden: true
                     }
                 ]

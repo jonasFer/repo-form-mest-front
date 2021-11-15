@@ -82,7 +82,7 @@
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="cuidadoCorporal.hipoCorada">Hipocorada</el-checkbox>
+                    <el-checkbox v-model="cuidadoCorporal.hipocorada">Hipocorada</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">

@@ -4,19 +4,19 @@
             <el-collapse v-model="activeNames">
                 <el-collapse-item name="1">
                     <template slot="title">
-                        I - Identificação <i class="el-icon-warning-outline attention"></i>
+                        I - Identificação 
                     </template>
                     <identificacao :identificacao=prontuario.identificacao></identificacao>
                 </el-collapse-item>
                 <el-collapse-item name="2">
                     <template slot="title">
-                        II - Entrevista <i class="el-icon-warning-outline attention"></i>
+                        II - Entrevista 
                     </template>
                     <entrevista :entrevista=prontuario.entrevista></entrevista>
                 </el-collapse-item>
                 <el-collapse-item name="3">
                     <template slot="title">
-                        III - Exame Físico <i class="el-icon-warning-outline attention"></i>
+                        III - Exame Físico 
                     </template>
                     <el-collapse-item title="Regulação neurológica" name="10">
                         <regulacao-neurologica :regulacaoNeurologica=prontuario.exameFisico.regulacaoNeurologica></regulacao-neurologica>
@@ -63,13 +63,13 @@
                 </el-collapse-item>
                 <el-collapse-item name="4">
                     <template slot="title">
-                        IV - Impressões do enfermeiro e intercorrências <i class="el-icon-warning-outline attention"></i>
+                        IV - Impressões do enfermeiro e intercorrências 
                     </template>
                     <impressoes-intecorrencia :impressoesIntercorrencia=prontuario.exameFisico.impressoesIntercorrencia></impressoes-intecorrencia>
                 </el-collapse-item>
                 <el-collapse-item name="5">
                     <template slot="title">
-                        V - Diagnósticos de enfermagem <i class="el-icon-warning-outline attention"></i>
+                        V - Diagnósticos de enfermagem 
                     </template>
                     <el-collapse-item title="Necessidade de oxigênação" name="30">
                         <necessidade-oxigenacao :oxigenacao=prontuario.diagnosticoEnfermagem.oxigenacao></necessidade-oxigenacao>
@@ -110,7 +110,7 @@
                 </el-collapse-item>
                 <el-collapse-item name="6">
                     <template slot="title">
-                        VI - Intervenções de enfermagem <i class="el-icon-warning-outline attention"></i>
+                        VI - Intervenções de enfermagem 
                     </template>
                     <el-collapse-item title="Procedimentos realizados" name="7">
                     </el-collapse-item>
@@ -407,7 +407,7 @@ export default {
                         peleFria: null,
                         peleAquecida: null,
                         peleCorada: null,
-                        hipoCorada: null,
+                        hipocorada: null,
                         descricaoHipocorada: null,
                         cianotica: null,
                         icterica: null,
@@ -452,7 +452,7 @@ export default {
                         dst: null,
                         descricaoDst: null,
                         preservativo: null,
-                        anticoncepcionais: null,
+                        anticoncepcional: null,
                         descricao: null
                     },
                     comunicacao: {
@@ -619,7 +619,6 @@ export default {
         submitForm() {
             this.$refs['dataForm'].validate((valid) => {
                 if (valid) {
-                    console.log(this.prontuario)
                     create('prontuario', this.prontuario).then(response => {
                         this.$notify({
                             title: 'Successo',
@@ -627,6 +626,8 @@ export default {
                             type: 'success',
                             duration: 2000
                         })
+
+                        this.$router.push({ name: 'Prontuários' })
                     })
                 }
             })

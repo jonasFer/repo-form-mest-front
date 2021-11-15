@@ -110,7 +110,7 @@
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
-                <el-form-item label="Tipo sonda">
+                <el-form-item label="Abdome">
                     <el-select v-model="alimentacaoEliminacaoIntestinal.abdome">
                         <el-option label="Plano" value="1"></el-option>
                         <el-option label="Flácido" value="2"></el-option>

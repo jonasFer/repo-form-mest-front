@@ -3,22 +3,22 @@
         <el-row :gutter="20">
             <el-col  :xs="12" :sm="6" :md="6" :lg="4">
                 <el-form-item label="Escala de coma">
-                    <el-input v-model="regulacaoNeurologica.escalaComa"></el-input>
+                    <el-input v-model="regulacaoNeurologica.escalaComa" type="number"></el-input>
                 </el-form-item>
             </el-col>
             <el-col  :xs="12" :sm="3" :md="4" :lg="4">
                 <el-form-item label="AO">
-                    <el-input v-model="regulacaoNeurologica.aberturaOcular"></el-input>
+                    <el-input v-model="regulacaoNeurologica.aberturaOcular" type="number"></el-input>
                 </el-form-item>
             </el-col>
             <el-col  :xs="12" :sm="3" :md="3" :lg="3">
                 <el-form-item label="RV">
-                    <el-input v-model="regulacaoNeurologica.respostaVerbal"></el-input>
+                    <el-input v-model="regulacaoNeurologica.respostaVerbal" type="number"></el-input>
                 </el-form-item>
             </el-col>
             <el-col  :xs="12" :sm="4" :md="3" :lg="3">
                 <el-form-item label="RM">
-                    <el-input v-model="regulacaoNeurologica.respostaMotora"></el-input>
+                    <el-input v-model="regulacaoNeurologica.respostaMotora" type="number"></el-input>
                 </el-form-item>
             </el-col>
             <el-col  :xs="24" :sm="8" :md="8" :lg="10">
