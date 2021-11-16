@@ -14,8 +14,12 @@
             <el-col :xs="12" :sm="6" :md="6" :lg="4">
                 <el-form-item label="Sexo">
                     <el-select v-model="identificacao.sexo" placeholder="Selecione">
-                    <el-option label="Masculino" value="M"></el-option>
-                    <el-option label="Feminino" value="F"></el-option>
+                        <el-option
+                            v-for="item in optSexo"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        />
                     </el-select>
                 </el-form-item>
             </el-col>
@@ -27,10 +31,12 @@
             <el-col :xs="12" :sm="6" :md="6" :lg="8">
                 <el-form-item label="Estado civil">
                     <el-select v-model="identificacao.estadoCivil" placeholder="Selecione">
-                    <el-option label="Solteiro(a)" value="1"></el-option>
-                    <el-option label="Casado(a)" value="2"></el-option>
-                    <el-option label="Divorciado(a)" value="3"></el-option>
-                    <el-option label="Viúvo(a)" value="4"></el-option>
+                        <el-option
+                            v-for="item in optEstadoCivil"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        />
                     </el-select>
                 </el-form-item>
             </el-col>
@@ -83,6 +89,20 @@ export default {
     props: {
         identificacao: {
             type: Object
+        }
+    },
+    data() {
+        return {
+            optSexo: [
+                { "id": 'M', "name": "Masculino" },
+                { "id": 'F', "name": "Feminino" }
+            ],
+            optEstadoCivil: [
+                { "id": 1, "name": "Solteiro(a)" },
+                { "id": 2, "name": "Casado(a)" },
+                { "id": 3, "name": "Divorciado(a)" },
+                { "id": 4, "name": "Viúvo(a)" }
+            ],
         }
     }
 }

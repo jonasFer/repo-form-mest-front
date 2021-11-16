@@ -3,9 +3,16 @@
         <el-row :gutter="20">
             <el-col :xs="12" :sm="7" :md="5" :lg="4">
                 <el-form-item label="Internações anteriores">
-                    <el-select v-model="entrevista.internacaoAnterior">
-                    <el-option label="Sim" value=true></el-option>
-                    <el-option label="Não" value=false></el-option>
+                    <el-select
+                        v-model="entrevista.internacaoAnterior"
+                        default-first-option
+                    >
+                        <el-option
+                            v-for="item in optDefault"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        />
                     </el-select>
                 </el-form-item>
             </el-col>
@@ -17,8 +24,12 @@
             <el-col :xs="12" :sm="6" :md="6" :lg="4">
                 <el-form-item label="Alergia">
                     <el-select v-model="entrevista.alergia" @change="switchSelect($event)">
-                        <el-option label="Sim" value="true"></el-option>
-                        <el-option label="Não" value="false"></el-option>
+                        <el-option
+                            v-for="item in optDefault"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        />
                     </el-select>
                 </el-form-item>
             </el-col>
@@ -90,6 +101,14 @@ export default {
     props: {
         entrevista: {
             type: Object
+        }
+    },
+    data() {
+        return {
+            optDefault: [
+                { "id": true, "name": "Sim" },
+                { "id": false, "name": "Não" }
+            ],
         }
     }
 }

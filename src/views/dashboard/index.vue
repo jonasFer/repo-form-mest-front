@@ -30,7 +30,6 @@ export default {
     methods: {
         count() {
             all('prontuario/count', '').then(response => {
-                console.log(response.data);
                 this.totalProntuario = response.data
             })
         },

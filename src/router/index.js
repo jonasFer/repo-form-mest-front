@@ -74,7 +74,7 @@ export const constantRoutes = [
                     {
                         path: ':id',
                         component: () => import('@/views/prontuario/formulario/index'),
-                        name: 'Formulário',
+                        name: 'Editar Prontuário',
                         meta: { title: 'Prontuários', noCache: false },
                         hidden: true
                     }

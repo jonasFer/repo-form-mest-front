@@ -34,10 +34,13 @@
             </el-table-column>
             <el-table-column label="Ações" align="center" width="230" class-name="small-padding fixed-width">
                 <template slot-scope="{row}">
-                    <router-link :to="`/prontuario/${row.id}`">
-                        <el-button type="primary" size="mini">
-                            Info
-                        </el-button>
+                    <el-tooltip class="item" effect="dark" content="Visualizar prontuário" placement="top-start">
+                        <el-button icon="el-icon-search" circle @click="info()"></el-button>
+                    </el-tooltip>
+                    <router-link :to="{ name: 'Editar Prontuário', params: { id: row.id }}">
+                        <el-tooltip class="item" effect="dark" content="Editar prontuário" placement="top-start">
+                            <el-button type="primary" icon="el-icon-edit" circle></el-button>
+                        </el-tooltip>
                     </router-link>
                 </template>
             </el-table-column>
@@ -63,14 +66,10 @@ export default {
             listLoading: true,
             listQuery: {
                 page: 1,
-                limit: 10,
+                limit: 50,
                 id: undefined,
                 sort: 'id',
                 direction: 'ASC'
-            },
-            especie: {
-                id: undefined,
-                nome: '',
             },
             dialogFormVisible: false,
             dialogStatus: '',
@@ -82,7 +81,6 @@ export default {
     },
     activated() {
         this.getList()
-        console.log('activated')
     },
     methods: {
         paginate() {
@@ -118,23 +116,14 @@ export default {
             }
             this.handleFilter()
         },
-        resetEspecie() {
-            this.especie = {
-                id: undefined,
-                nome: ''
-            }
-        },
-        handleCreate() {
-            this.resetEspecie()
-            this.dialogStatus = 'create'
-            this.dialogFormVisible = true
-            this.$nextTick(() => {
-                this.$refs['dataForm'].clearValidate()
-            })
-        },
         getSortClass: function(key) {
             const sort = this.listQuery.sort
             return sort === `+${key}` ? 'ascending' : 'descending'
+        },
+        info() {
+            this.$alert('Funcionalidade em desenvolvimento', {
+                confirmButtonText: 'OK'
+            });
         }
     }
 }

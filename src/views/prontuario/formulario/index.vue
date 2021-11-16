@@ -4,19 +4,19 @@
             <el-collapse v-model="activeNames">
                 <el-collapse-item name="1">
                     <template slot="title">
-                        I - Identificação 
+                        I - Identificação
                     </template>
                     <identificacao :identificacao=prontuario.identificacao></identificacao>
                 </el-collapse-item>
                 <el-collapse-item name="2">
                     <template slot="title">
-                        II - Entrevista 
+                        II - Entrevista
                     </template>
                     <entrevista :entrevista=prontuario.entrevista></entrevista>
                 </el-collapse-item>
                 <el-collapse-item name="3">
                     <template slot="title">
-                        III - Exame Físico 
+                        III - Exame Físico
                     </template>
                     <el-collapse-item title="Regulação neurológica" name="10">
                         <regulacao-neurologica :regulacaoNeurologica=prontuario.exameFisico.regulacaoNeurologica></regulacao-neurologica>
@@ -63,13 +63,13 @@
                 </el-collapse-item>
                 <el-collapse-item name="4">
                     <template slot="title">
-                        IV - Impressões do enfermeiro e intercorrências 
+                        IV - Impressões do enfermeiro e intercorrências
                     </template>
                     <impressoes-intecorrencia :impressoesIntercorrencia=prontuario.exameFisico.impressoesIntercorrencia></impressoes-intecorrencia>
                 </el-collapse-item>
                 <el-collapse-item name="5">
                     <template slot="title">
-                        V - Diagnósticos de enfermagem 
+                        V - Diagnósticos de enfermagem
                     </template>
                     <el-collapse-item title="Necessidade de oxigênação" name="30">
                         <necessidade-oxigenacao :oxigenacao=prontuario.diagnosticoEnfermagem.oxigenacao></necessidade-oxigenacao>
@@ -110,20 +110,20 @@
                 </el-collapse-item>
                 <el-collapse-item name="6">
                     <template slot="title">
-                        VI - Intervenções de enfermagem 
+                        VI - Intervenções de enfermagem
                     </template>
                     <el-collapse-item title="Procedimentos realizados" name="7">
                     </el-collapse-item>
                 </el-collapse-item>
             </el-collapse>
-            <el-row style="float: right;"> 
+            <el-row style="float: right;">
                 <br><br>
                 <router-link :to="{ name: 'Prontuários' }">
                     <el-button>
                         Voltar
                     </el-button>
                 </router-link>
-                <el-button type="primary" @click="submitForm()">
+                <el-button type="primary" @click="submitForm()" v-if="!isInfo">
                     Salvar
                 </el-button>
             </el-row>
@@ -161,7 +161,7 @@ import NecessidadeSonoRepouso from '@/form/diagnostico-enfermagem/sono-repouso'
 import NecessidadeTerapeutica from '@/form/diagnostico-enfermagem/terapeutica'
 import NecessidadeSegurancaEmocional from '@/form/diagnostico-enfermagem/seguranca-emocional'
 import DadosEnfermeiro from '@/form/diagnostico-enfermagem/dados-enfermeiro'
-import { create } from "@/api/base"
+import { create, update, byId } from "@/api/base"
 
 export default {
     components: {
@@ -197,6 +197,9 @@ export default {
     },
     data() {
         return {
+            id: 0,
+            isInfo: false,
+            isEdit: false,
             activeNames: null,
             prontuario: {
                 id: null,
@@ -620,6 +623,17 @@ export default {
             }
         }
     },
+    activated() {
+        const route = this.$route
+        this.isInfo = false
+        this.isEdit = false
+        this.id = 0
+        if (route.name == 'Editar Prontuário') {
+            this.isEdit = true
+            this.id = route.params.id
+            this.getProntuario(this.id);
+        }
+    },
     methods: {
         submitForm() {
             this.$confirm('Deseja salvar o formulário?', '', {
@@ -629,25 +643,12 @@ export default {
             }).then(() => {
                 this.$refs['dataForm'].validate((valid) => {
                     if (valid) {
-                        create('prontuario', this.prontuario)
-                            .then(response => {
-                                this.$notify({
-                                    title: 'Successo',
-                                    message: 'Cadastrado com sucesso',
-                                    type: 'success',
-                                    duration: 2000
-                                })
+                        if (this.isEdit) {
+                            this.updateProntuario(this.id)
+                            return
+                        }
 
-                                this.$router.push({ name: 'Prontuários' })
-                            })
-                            .catch(() => {
-                                this.$notify({
-                                    title: 'Falha',
-                                    message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
-                                    type: 'error',
-                                    duration: 5000
-                                })       
-                            });
+                        this.createProntuario()
                     } else {
                         this.$alert('Existem campos obrigatórios não preenchidos', {
                             confirmButtonText: 'OK'
@@ -655,7 +656,54 @@ export default {
                     }
                 })
             })
-        }
+        },
+        createProntuario() {
+            create('prontuario', this.prontuario)
+                .then(response => {
+                    this.$notify({
+                        title: 'Successo',
+                        message: 'Cadastrado com sucesso',
+                        type: 'success',
+                        duration: 2000
+                    })
+
+                    this.$router.push({ name: 'Prontuários' })
+                })
+                .catch(() => {
+                    this.$notify({
+                        title: 'Falha',
+                        message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
+                        type: 'error',
+                        duration: 5000
+                    })
+                });
+        },
+        updateProntuario(id) {
+            update(`/prontuario/${id}`, this.prontuario)
+                .then(response => {
+                    this.$notify({
+                        title: 'Successo',
+                        message: 'Salvo com sucesso',
+                        type: 'success',
+                        duration: 2000
+                    })
+
+                    this.$router.push({ name: 'Prontuários' })
+                })
+                .catch(() => {
+                    this.$notify({
+                        title: 'Falha',
+                        message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
+                        type: 'error',
+                        duration: 5000
+                    })
+                });
+        },
+        getProntuario(id) {
+            byId(`/prontuario/${id}`).then(response => {
+                this.prontuario = response.data;
+            })
+        },
     }
 }
 </script>

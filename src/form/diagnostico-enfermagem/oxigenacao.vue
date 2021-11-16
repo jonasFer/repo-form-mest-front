@@ -3,7 +3,7 @@
         <el-row :gutter="20">
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
                 <el-form-item>
-                    <el-checkbox v-model="oxigenacao.dispneia">Dispineia</el-checkbox>
+                    <el-checkbox v-model="oxigenacao.dispineia">Dispineia</el-checkbox>
                 </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="7" :md="5" :lg="5">
