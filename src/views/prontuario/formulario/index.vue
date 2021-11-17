@@ -65,7 +65,7 @@
                     <template slot="title">
                         IV - Impressões do enfermeiro e intercorrências
                     </template>
-                    <impressoes-intecorrencia :impressoesIntercorrencia=prontuario.exameFisico.impressoesIntercorrencia></impressoes-intecorrencia>
+                    <impressoes-intecorrencia :impressoesIntercorrencia=prontuario.impressoesIntercorrencia></impressoes-intecorrencia>
                 </el-collapse-item>
                 <el-collapse-item name="5">
                     <template slot="title">
@@ -112,8 +112,7 @@
                     <template slot="title">
                         VI - Intervenções de enfermagem
                     </template>
-                    <el-collapse-item title="Procedimentos realizados" name="7">
-                    </el-collapse-item>
+                    <intervencoes-enfermagem :intervencoesEnfermagem=prontuario.intervencoesEnfermagem></intervencoes-enfermagem>
                 </el-collapse-item>
             </el-collapse>
             <el-row style="float: right;">
@@ -148,7 +147,7 @@ import AtividadeFisica from '@/form/exame-fisico/atividade-fisica'
 import Comunicacao from '@/form/exame-fisico/comunicacao'
 import SegurancaEmocional from '@/form/exame-fisico/seguranca-emocional'
 import Religiosidade from '@/form/exame-fisico/religiosidade'
-import ImpressoesIntecorrencia from '@/form/exame-fisico/impressoes-intecorrencia'
+import ImpressoesIntecorrencia from '@/form/impressoes-intercorrencia'
 import NecessidadeOxigenacao from '@/form/diagnostico-enfermagem/oxigenacao'
 import NecessidadeRegulacaoVascular from '@/form/diagnostico-enfermagem/regulacao-vascular'
 import NecessidadeRegulacaoNeurologica from '@/form/diagnostico-enfermagem/regulacao-neurologica'
@@ -161,6 +160,7 @@ import NecessidadeSonoRepouso from '@/form/diagnostico-enfermagem/sono-repouso'
 import NecessidadeTerapeutica from '@/form/diagnostico-enfermagem/terapeutica'
 import NecessidadeSegurancaEmocional from '@/form/diagnostico-enfermagem/seguranca-emocional'
 import DadosEnfermeiro from '@/form/diagnostico-enfermagem/dados-enfermeiro'
+import IntervencoesEnfermagem from '@/form/intervencao-enfermagem/index'
 import { create, update, byId } from "@/api/base"
 
 export default {
@@ -193,7 +193,8 @@ export default {
         NecessidadeSonoRepouso,
         NecessidadeTerapeutica,
         NecessidadeSegurancaEmocional,
-        DadosEnfermeiro
+        DadosEnfermeiro,
+        IntervencoesEnfermagem
     },
     data() {
         return {
@@ -494,11 +495,11 @@ export default {
                         religiao: null,
                         auxilioEspiritual: null,
                         descricaoAuxilioEspiritual: null
-                    },
-                    impressoesIntercorrencia: {
-                        id: null,
-                        descricao: null
                     }
+                },
+                impressoesIntercorrencia: {
+                    id: null,
+                    descricao: null
                 },
                 diagnosticoEnfermagem: {
                     oxigenacao: {
@@ -619,6 +620,173 @@ export default {
                         nome: null,
                         coren: null
                     }
+                },
+                intervencoesEnfermagem: {
+                    id: null,
+                    aspirarSecrecao: null,
+                    aprazamentoAspirarSecrecao: null,
+                    manterTotCentralizado: null,
+                    aprazamentoManterTot: null,
+                    elevarCabeceiraLeito: null,
+                    aprazamentoElevarCabeceira: null,
+                    monitorarFrequencia: null,
+                    aprazamentoMonitorarFrequencia: null,
+                    sinaisAngustia: null,
+                    aprazamentoSinaisAngustia: null,
+                    monitorarSpo2: null,
+                    aprazamentoMonitorarSpo2: null,
+                    terapiaO2: null,
+                    aprazamentoTerapiaO2: null,
+                    necessidadeVmni: null,
+                    aprazamentoNecessidadeVmni: null,
+                    manterRepousoLeito: null,
+                    aprazamentoManterRepousoLeito: null,
+                    nivelConsciencia: null,
+                    aprazamentoNivelConsciencia: null,
+                    sinalDesequilibrio: null,
+                    aprazamentoSinalDesequilibrio: null,
+                    sinalIcc: null,
+                    aprazamentoSinalIcc: null,
+                    respiracaoPaciente: null,
+                    aprazamentoRespiracaoPaciente: null,
+                    pressaoCuff: null,
+                    aprazamentoPressaoCuff: null,
+                    ritmoCardiaco: null,
+                    aprazamentoRitmoCardiaco: null,
+                    arritmia: null,
+                    aprazamentoArritmia: null,
+                    sangueUrina: null,
+                    aprazamentoSangueUrina: null,
+                    sinaisInfeccao: null,
+                    aprazamentoSinaisInfeccao: null,
+                    variacaoPressao: null,
+                    aprazamentoVariacaoPressao: null,
+                    pressaoAtrio: null,
+                    aprazamentoPressaoAtrio: null,
+                    desequilibrioLiquido: null,
+                    aprazamentoDesequilibrioLiquido: null,
+                    sinaisCardiaco: null,
+                    aprazamentoSinaisCardiaco: null,
+                    edema: null,
+                    aprazamentoEdema: null,
+                    volume: null,
+                    aprazamentoVolume: null,
+                    desconforto: null,
+                    aprazamentoDesconforto: null,
+                    nivelSedacao: null,
+                    aprazamentoNivelSedacao: null,
+                    alteracaoPupilares: null,
+                    aprazamentoAlteracaoPupilares: null,
+                    conhecidoData: null,
+                    aprazamentoConhecidoData: null,
+                    circunferenciaAbdominal: null,
+                    aprazamentoCircunferenciaAbdominal: null,
+                    hidroEletolitico: null,
+                    aprazamentoHidroEletolitico: null,
+                    extremidadeAcimaNivel: null,
+                    aprazamentoExtremidadeAcimaNivel: null,
+                    protegerMembro: null,
+                    aprazamentoProtegerMembro: null,
+                    mudancaDecubito: null,
+                    aprazamentoMudancaDecubito: null,
+                    ingestaoLiquido: null,
+                    aprazamentoIngestaoLiquido: null,
+                    sinaisDesidratacao: null,
+                    aprazamentoSinaisDesidratacao: null,
+                    presencaRuidosPulmonar: null,
+                    aprazamentoPresencaRuidosPulmonar: null,
+                    pesoCorporalDiminuido: null,
+                    aprazamentoPesoCorporalDiminuido: null,
+                    refeicoesMenores: null,
+                    aprazamentoRefeicoesMenores: null,
+                    residuosGastricos: null,
+                    aprazamentoResiduosGastricos: null,
+                    gotejamentoSonda: null,
+                    aprazamentoGotejamentoSonda: null,
+                    posicionamentoSng: null,
+                    aprazamentoPosicionamentoSng: null,
+                    intercalarAlimentacao: null,
+                    aprazamentoIntercalarAlimentacao: null,
+                    restringirLiquido: null,
+                    aprazamentoRestringirLiquido: null,
+                    procedimentosDolorosos: null,
+                    aprazamentoProcedimentosDolorosos: null,
+                    hipolicemia: null,
+                    aprazamentoHipolicemia: null,
+                    alteracaoGlicemia: null,
+                    aprazamentoAlteracaoGlicemia: null,
+                    nutricao: null,
+                    aprazamentoNutricao: null,
+                    ruidos: null,
+                    aprazamentoRuidos: null,
+                    idaBanheiro: null,
+                    aprazamentoIdaBanheiro: null,
+                    fatoresConstipacao: null,
+                    aprazamentoFatoresConstipacao: null,
+                    sangueFezes: null,
+                    aprazamentoSangueFezes: null,
+                    eliminacaoIntestinal: null,
+                    aprazamentoEliminacaoIntestinal: null,
+                    debitoUrinario: null,
+                    aprazamentoDebitoUrinario: null,
+                    distensaoBexiga: null,
+                    aprazamentoDistensaoBexiga: null,
+                    funcionamentoSvd: null,
+                    aprazamentoFuncionamentoSvd: null,
+                    lateralizarCabeca: null,
+                    aprazamentoLateralizarCabeca: null,
+                    investigarVomito: null,
+                    aprazamentoInvestigarVomito: null,
+                    mensurarDrenagem: null,
+                    aprazamentoMensurarDrenagem: null,
+                    mensurarSeloDagua: null,
+                    aprazamentoMensurarSeloDagua: null,
+                    higieneOral: null,
+                    aprazamentoHigieneOral: null,
+                    hidratarPele: null,
+                    aprazamentoHidratarPele: null,
+                    proeminenciasOsseas: null,
+                    aprazamentoProeminenciasOsseas: null,
+                    registroFerida: null,
+                    aprazamentoRegistroFerida: null,
+                    posicaoConfortavel: null,
+                    aprazamentoPosicaoConfortavel: null,
+                    alivioDor: null,
+                    aprazamentoAlivioDor: null,
+                    dorResolucao: null,
+                    aprazamentoDorResolucao: null,
+                    dorCronica: null,
+                    aprazamentoDorCronica: null,
+                    cursoDor: null,
+                    aprazamentoCursoDor: null,
+                    compressaFria: null,
+                    aprazamentoCompressaFria: null,
+                    autocuidadePaciennte: null,
+                    aprazamentoAutocuidadoPaciennte: null,
+                    fatorAmbiental: null,
+                    aprazamentoFatorAmbiental: null,
+                    tempoSono: null,
+                    aprazamentoTempoSono: null,
+                    padraoSono: null,
+                    aprazamentoPadraoSono: null,
+                    cirurgiaSangramento: null,
+                    aprazamentoCirurgiaSangramento: null,
+                    areaTossir: null,
+                    aprazamentoAreaTossir: null,
+                    respostaTerapeutica: null,
+                    aprazamentoRespostaTerapeutica: null,
+                    conterPaciente: null,
+                    aprazamentoConterPaciente: null,
+                    expectativaPaciente: null,
+                    aprazamentoExpectativaPaciente: null,
+                    diminuirAnsiedade: null,
+                    aprazamentoDiminuirAnsiedade: null,
+                    medoPaciente: null,
+                    aprazamentoMedoPaciente: null,
+                    informacaoCorreta: null,
+                    aprazamentoInformacaoCorreta: null,
+                    apoioEspiritual: null,
+                    aprazamentoApoioEspiritual: null
                 }
             }
         }
