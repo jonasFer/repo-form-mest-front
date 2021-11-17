@@ -46,14 +46,14 @@ export default {
     data() {
         const validateEmail = (rule, value, callback) => {
             if (!validateEmail(value)) {
-                callback(new Error('Please enter the correct user name'))
+                callback(new Error('Por favor insira um email válido.'))
             } else {
                 callback()
             }
         }
         const validatePassword = (rule, value, callback) => {
             if (value.length < 6) {
-                callback(new Error('The password can not be less than 6 digits'))
+                callback(new Error('A senha não pode ter menos que 6 caracteres.'))
             } else {
                 callback()
             }
@@ -61,8 +61,8 @@ export default {
         return {
             loading: false,
             loginForm: {
-                email: 'jonas@email.com',
-                password: '123456'
+                email: '',
+                password: ''
             },
             loginRules: {
                 email: [{ required: true, trigger: 'blur', validator: validateEmail }],
@@ -84,6 +84,12 @@ export default {
                             this.loading = false
                         })
                         .catch(() => {
+                            this.$notify({
+                                title: 'Erro',
+                                message: 'Login e/ou senha incorretos',
+                                type: 'error',
+                                duration: 2000
+                            })
                             this.loading = false
                         })
                 } else {

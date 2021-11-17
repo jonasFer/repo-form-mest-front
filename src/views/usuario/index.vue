@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <div class="filter-container" style="float: right;">
-            <router-link to="/prontuario/formulario">
+            <router-link :to="{ name: 'cad-usuario'}">
                 <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-plus">
                     Cadastrar
                 </el-button>
@@ -23,18 +23,14 @@
                     <span>{{ row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="Nome" align="center">
+            <el-table-column label="Email" align="center">
                 <template slot-scope="{row}">
-                    <span>{{ row.nome }}</span>
+                    <span>{{ row.email }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="Ações" align="center" width="230" class-name="small-padding fixed-width">
                 <template slot-scope="{row}">
-                    <el-tooltip class="item" effect="dark" content="Visualizar prontuário" placement="top-start">
-                        <el-button icon="el-icon-search" circle @click="info()"></el-button>
-                    </el-tooltip>
-                    &nbsp;&nbsp;
-                    <router-link :to="{ name: 'Editar Prontuário', params: { id: row.id }}">
+                    <router-link :to="{ name: 'edit-usuario', params: { id: row.id }}">
                         <el-tooltip class="item" effect="dark" content="Editar prontuário" placement="top-start">
                             <el-button type="primary" icon="el-icon-edit" circle></el-button>
                         </el-tooltip>
@@ -43,17 +39,14 @@
             </el-table-column>
         </el-table>
 
-        <pagination class="text-center" v-show="total > 10" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="paginate" />
 
     </div>
 </template>
 <script>
 import { all } from '@/api/base';
 import waves from '@/directive/waves';
-import Pagination from '@/components/Pagination';
 
 export default {
-    components: { Pagination },
     directives: { waves },
     data() {
         return {
@@ -87,11 +80,10 @@ export default {
         getList() {
             this.listQuery.page -= 1;
             this.listLoading = true
-            all('prontuario', this.listQuery).then(response => {
+            all('usuario', this.listQuery).then(response => {
                 setTimeout(() => {
                     this.listLoading = false
-                    this.list = response.data.itens;
-                    this.total = response.data.total;
+                    this.list = response.data;
                 }, 1000)
             })
         },

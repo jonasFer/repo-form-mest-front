@@ -89,10 +89,18 @@ export const constantRoutes = [
         hidden: true,
         children: [
             {
-                path: 'index',
-                component: () => import('@/views/profile/index'),
-                name: 'Profile',
-                meta: { title: 'Profile', icon: 'user', noCache: true }
+                path: 'formulario',
+                component: () => import('@/views/prontuario/formulario/index'),
+                hidden: true,
+                children: [
+                    {
+                        path: ':id',
+                        component: () => import('@/views/prontuario/formulario/index'),
+                        name: 'Editar Prontuário',
+                        meta: { title: 'Prontuários', noCache: false },
+                        hidden: true
+                    }
+                ]
             }
         ]
     }
@@ -105,7 +113,35 @@ export const constantRoutes = [
 export const asyncRoutes = [
     /** when your routing map is too long, you can split it into small modules **/
     // 404 page must be placed at the end !!!
-    { path: '*', redirect: '/404', hidden: true }
+    { path: '*', redirect: '/404', hidden: true },
+    {
+        path: '/usuario',
+        component: Layout,
+        children: [
+            {
+                path: '',
+                component: () => import('@/views/usuario/index'),
+                name: 'usuario',
+                meta: { title: 'Usuários', icon: 'el-icon-user', roles: ['ROLE_ADMIN']}
+            },
+            {
+                path: 'formulario',
+                component: () => import('@/views/usuario/formulario/index'),
+                hidden: true,
+                name: 'cad-usuario',
+                meta: { title: 'Cadastrar usuário', noCache: false },
+                children: [
+                    {
+                        path: ':id',
+                        component: () => import('@/views/usuario/formulario/index'),
+                        name: 'edit-usuario',
+                        meta: { title: 'Editar usuário', noCache: false },
+                        hidden: true
+                    }
+                ]
+            }
+        ]
+    },
 ]
 
 const createRouter = () => new Router({
