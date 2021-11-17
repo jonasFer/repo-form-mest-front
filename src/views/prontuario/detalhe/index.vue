@@ -47,7 +47,7 @@ export default {
                 {
                     value: 'Option1',
                     label: 'Option1'
-                }, 
+                },
                 {
                     value: 'Option2',
                     label: 'Option2'
@@ -62,7 +62,6 @@ export default {
         findProntuario() {
             byId('prontuario/' + this.id).then(response => {
                 this.prontuario = response.data
-                console.log(this.prontuario);
             })
         }
     }

@@ -11,7 +11,12 @@
                 <i class="el-icon-caret-bottom" />
                 </div>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item @click.native="logout()">
+                    <router-link :to="{ name: 'painel-usuario' }">
+                        <el-dropdown-item>
+                            <span style="display:block;">Painel de usuário</span>
+                        </el-dropdown-item>
+                    </router-link>
+                    <el-dropdown-item divided @click.native="logout()">
                         <span style="display:block;">Log Out</span>
                     </el-dropdown-item>
                 </el-dropdown-menu>
@@ -46,7 +51,7 @@ export default {
         },
         logout() {
             store.dispatch('user/logout')
-            this.$router.push("login")
+            this.$router.push('/login')
         }
     }
 }

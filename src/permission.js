@@ -4,7 +4,7 @@ import getPageTitle from "@/utils/get-page-title";
 import { Message } from 'element-ui';
 import { getToken } from '@/utils/auth';
 
-const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
+const whiteList = ['/login']
 
 router.beforeEach(async (to, from, next) => {
     document.title = getPageTitle(to.meta.title);
@@ -29,7 +29,6 @@ router.beforeEach(async (to, from, next) => {
                     router.addRoutes(accessRoutes);
                     next({ ...to, replace: true })
                 } catch (error) {
-                    console.log(error);
                     // remove token and go to login page to re-login
                     await store.dispatch('user/resetToken');
                     Message.error(error || 'Has Error');

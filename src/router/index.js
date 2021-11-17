@@ -20,6 +20,7 @@ export const constantRoutes = [
         children: [
             {
                 path: '/redirect/:path(.*)',
+                name: 'redirect',
                 component: () => import('@/views/redirect/index')
             }
         ]
@@ -27,11 +28,7 @@ export const constantRoutes = [
     {
         path: '/login',
         component: () => import('@/views/login/index'),
-        hidden: true
-    },
-    {
-        path: '/auth-redirect',
-        component: () => import('@/views/login/auth-redirect'),
+        name: 'login',
         hidden: true
     },
     {
@@ -49,7 +46,7 @@ export const constantRoutes = [
         component: Layout,
         children: [
             {
-                path: 'index',
+                path: '',
                 component: () => import('@/views/dashboard/index'),
                 name: 'Dashboard',
                 meta: { title: 'Dashboard', icon: 'el-icon-s-home', noCache: true }
@@ -83,24 +80,16 @@ export const constantRoutes = [
         ]
     },
     {
-        path: '/profile',
+        path: '/painel-usuario',
         component: Layout,
-        redirect: '/profile/index',
         hidden: true,
         children: [
             {
-                path: 'formulario',
-                component: () => import('@/views/prontuario/formulario/index'),
+                path: '',
+                component: () => import('@/views/painel-usuario/index'),
+                name: 'painel-usuario',
                 hidden: true,
-                children: [
-                    {
-                        path: ':id',
-                        component: () => import('@/views/prontuario/formulario/index'),
-                        name: 'Editar Prontuário',
-                        meta: { title: 'Prontuários', noCache: false },
-                        hidden: true
-                    }
-                ]
+                meta: { title: 'Painel de usuário' },
             }
         ]
     }

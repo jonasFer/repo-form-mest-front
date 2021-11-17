@@ -82,7 +82,6 @@ export default {
         submitForm() {
             this.$refs['formUser'].validate((valid) => {
                 if (valid) {
-                    console.log('valid')
                     this.$confirm('Deseja salvar os dados do usuário?', '', {
                         confirmButtonText: 'Sim',
                         cancelButtonText: 'Não',
