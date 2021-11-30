@@ -1,12 +1,10 @@
 import axios from "axios";
-//import { MessageBox, Message } from "element-ui";
 import store from "@/store";
 import { getToken } from "@/utils/auth";
 
 const service = axios.create({
     // alterar para env
-    //baseURL: 'http://localhost:8000',
-    baseURL: 'http://form-mest-service.us-east-2.elasticbeanstalk.com',
+    baseURL: 'https://form-mest-service.herokuapp.com',
     timeout: 10000
 })
 
@@ -21,14 +19,5 @@ service.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-
-// Criar refresh do token caso esteja exppirado
-/*
-service.interceptors.response.use(
-    response => {
-        const res = response.data
-    }
-)
-*/
 
 export default service;

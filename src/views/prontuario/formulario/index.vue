@@ -848,7 +848,7 @@ export default {
         },
         updateProntuario(id) {
             update(`/prontuario/${id}`, this.prontuario)
-                .then(response => {
+                .then(() => {
                     this.$notify({
                         title: 'Successo',
                         message: 'Salvo com sucesso',
