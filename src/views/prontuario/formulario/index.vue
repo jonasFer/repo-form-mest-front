@@ -813,6 +813,7 @@ export default {
                     if (valid) {
                         if (this.isEdit) {
                             this.updateProntuario(this.id)
+                            this.$refs['dataForm'].resetFields()
                             return
                         }
 
@@ -827,14 +828,14 @@ export default {
         },
         createProntuario() {
             create('prontuario', this.prontuario)
-                .then(response => {
+                .then(() => {
                     this.$notify({
                         title: 'Successo',
                         message: 'Cadastrado com sucesso',
                         type: 'success',
                         duration: 2000
                     })
-
+                    this.$refs['dataForm'].resetFields()
                     this.$router.push({ name: 'Prontuários' })
                 })
                 .catch(() => {
