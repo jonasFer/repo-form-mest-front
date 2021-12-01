@@ -202,7 +202,95 @@ export default {
             isInfo: false,
             isEdit: false,
             activeNames: null,
-            prontuario: {
+            prontuario: this.getClearProntuario()
+        }
+    },
+    activated() {
+        const route = this.$route
+        this.isInfo = false
+        this.isEdit = false
+        this.id = 0
+        if (route.name == 'Editar Prontuário') {
+            this.isEdit = true
+            this.id = route.params.id
+            this.getProntuario(this.id);
+        }
+    },
+    methods: {
+        submitForm() {
+            this.$confirm('Deseja salvar o formulário?', '', {
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não',
+                type: 'warning'
+            }).then(() => {
+                this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        if (this.isEdit) {
+                            this.updateProntuario(this.id)
+                            this.prontuario = this.getClearProntuario()
+                            this.activeNames = null
+                            return
+                        }
+
+                        this.createProntuario()
+                    } else {
+                        this.$alert('Existem campos obrigatórios não preenchidos', {
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+            })
+        },
+        createProntuario() {
+            create('prontuario', this.prontuario)
+                .then(() => {
+                    this.$notify({
+                        title: 'Successo',
+                        message: 'Cadastrado com sucesso',
+                        type: 'success',
+                        duration: 2000
+                    })
+                    this.prontuario = this.getClearProntuario()
+                    this.activeNames = null
+                    this.$router.push({ name: 'Prontuários' })
+                })
+                .catch(() => {
+                    this.$notify({
+                        title: 'Falha',
+                        message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
+                        type: 'error',
+                        duration: 5000
+                    })
+                });
+        },
+        updateProntuario(id) {
+            update(`/prontuario/${id}`, this.prontuario)
+                .then(() => {
+                    this.$notify({
+                        title: 'Successo',
+                        message: 'Salvo com sucesso',
+                        type: 'success',
+                        duration: 2000
+                    })
+
+                    this.$router.push({ name: 'Prontuários' })
+                })
+                .catch(() => {
+                    this.$notify({
+                        title: 'Falha',
+                        message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
+                        type: 'error',
+                        duration: 5000
+                    })
+                });
+        },
+        getProntuario(id) {
+            byId(`/prontuario/${id}`).then(response => {
+                this.prontuario = response.data;
+            })
+        },
+        getClearProntuario() {
+            return  {
                 id: null,
                 identificacao: {
                     id: null,
@@ -790,89 +878,6 @@ export default {
                 }
             }
         }
-    },
-    activated() {
-        const route = this.$route
-        this.isInfo = false
-        this.isEdit = false
-        this.id = 0
-        if (route.name == 'Editar Prontuário') {
-            this.isEdit = true
-            this.id = route.params.id
-            this.getProntuario(this.id);
-        }
-    },
-    methods: {
-        submitForm() {
-            this.$confirm('Deseja salvar o formulário?', '', {
-                confirmButtonText: 'Sim',
-                cancelButtonText: 'Não',
-                type: 'warning'
-            }).then(() => {
-                this.$refs['dataForm'].validate((valid) => {
-                    if (valid) {
-                        if (this.isEdit) {
-                            this.updateProntuario(this.id)
-                            this.$refs['dataForm'].resetFields()
-                            return
-                        }
-
-                        this.createProntuario()
-                    } else {
-                        this.$alert('Existem campos obrigatórios não preenchidos', {
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                })
-            })
-        },
-        createProntuario() {
-            create('prontuario', this.prontuario)
-                .then(() => {
-                    this.$notify({
-                        title: 'Successo',
-                        message: 'Cadastrado com sucesso',
-                        type: 'success',
-                        duration: 2000
-                    })
-                    this.$refs['dataForm'].resetFields()
-                    this.$router.push({ name: 'Prontuários' })
-                })
-                .catch(() => {
-                    this.$notify({
-                        title: 'Falha',
-                        message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
-                        type: 'error',
-                        duration: 5000
-                    })
-                });
-        },
-        updateProntuario(id) {
-            update(`/prontuario/${id}`, this.prontuario)
-                .then(() => {
-                    this.$notify({
-                        title: 'Successo',
-                        message: 'Salvo com sucesso',
-                        type: 'success',
-                        duration: 2000
-                    })
-
-                    this.$router.push({ name: 'Prontuários' })
-                })
-                .catch(() => {
-                    this.$notify({
-                        title: 'Falha',
-                        message: 'Ocorreu um erro ao tentar salvar o prontuário. Tente novamente em alguns instantes.',
-                        type: 'error',
-                        duration: 5000
-                    })
-                });
-        },
-        getProntuario(id) {
-            byId(`/prontuario/${id}`).then(response => {
-                this.prontuario = response.data;
-            })
-        },
     }
 }
 </script>
